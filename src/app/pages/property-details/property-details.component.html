@@ -9,17 +9,59 @@
         <button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
           <i class="fi fi-rr-heart mt-1"></i>
         </button>
-        <button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
+        <button (click)="shareProperty()" class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm hover:bg-white transition-colors active:scale-90">
           <i class="fi fi-rr-share mt-1"></i>
         </button>
       </div>
     </div>
 
-    <!-- Image Gallery -->
-    <div class="h-80 w-full relative bg-gray-200">
-      <img [src]="property.imageUrl" [alt]="property.title" class="w-full h-full object-cover" />
-      <div class="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white text-[10px] px-3 py-1 rounded-full">
-        1/8
+    <!-- Image Gallery Carousel -->
+    <div class="h-80 w-full relative bg-gray-900 group overflow-hidden cursor-grab active:cursor-grabbing"
+         (mousedown)="onDragStart($event)"
+         (mousemove)="onDragMove($event)"
+         (mouseup)="onDragEnd()"
+         (mouseleave)="onDragEnd()"
+         (touchstart)="onDragStart($event)"
+         (touchmove)="onDragMove($event)"
+         (touchend)="onDragEnd()">
+      
+      <!-- Images Container -->
+      <div class="flex h-full transition-transform duration-500 ease-out" 
+           [class.transition-none]="dragOffset() !== 0"
+           [style.transform]="'translateX(calc(-' + (currentImageIndex() * 100) + '% + ' + dragOffset() + 'px))'">
+        @for (img of images; track img) {
+          <div class="w-full h-full flex-shrink-0">
+            <img [src]="img" class="w-full h-full object-cover select-none pointer-events-none" />
+          </div>
+        }
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button (click)="$event.stopPropagation(); prevImage()" 
+              [disabled]="currentImageIndex() === 0"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/20 backdrop-blur-sm text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 disabled:hidden">
+        <i class="fi fi-rr-angle-small-left text-2xl mt-1"></i>
+      </button>
+      <button (click)="$event.stopPropagation(); nextImage()" 
+              [disabled]="currentImageIndex() === images.length - 1"
+              class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/20 backdrop-blur-sm text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 disabled:hidden">
+        <i class="fi fi-rr-angle-small-right text-2xl mt-1"></i>
+      </button>
+
+      <!-- Carousel Progress Indicators -->
+      <div class="absolute bottom-10 left-0 right-0 flex justify-center gap-1.5 z-20">
+        @for (img of images; track $index) {
+          <button 
+            (click)="$event.stopPropagation(); setIndex($index)"
+            class="h-1.5 rounded-full transition-all duration-300"
+            [class]="currentImageIndex() === $index ? 'w-6 bg-white' : 'w-1.5 bg-white/50'">
+          </button>
+        }
+      </div>
+
+      <!-- Image Counter -->
+      <div class="absolute bottom-10 right-6 bg-black/50 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full z-20">
+        {{ currentImageIndex() + 1 }}/{{ images.length }}
       </div>
     </div>
 
@@ -65,10 +107,34 @@
       <!-- Description -->
       <div class="mb-8">
         <h3 class="text-base font-bold text-gray-900 mb-2">Sobre o imóvel</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Apartamento mobiliado, próximo a mercados, farmácias e com fácil acesso à Facens. Condomínio tranquilo e seguro.
+        <p class="text-gray-600 text-sm leading-relaxed transition-all duration-300"
+           [class.line-clamp-3]="!isDescriptionExpanded()">
+          Apartamento mobiliado, próximo a mercados, farmácias e com fácil acesso à Facens. Condomínio tranquilo e seguro. Localizado em um andar alto com vista privilegiada da cidade, possui acabamento de primeira linha, iluminação planejada e ventilação natural em todos os cômodos. Ideal para quem busca conforto e praticidade no dia a dia acadêmico.
         </p>
-        <button class="text-primary text-sm font-bold mt-2">Ver mais</button>
+        <button (click)="isDescriptionExpanded.set(!isDescriptionExpanded())" 
+                class="text-primary text-sm font-bold mt-2 flex items-center gap-1 hover:underline">
+          {{ isDescriptionExpanded() ? 'Ver menos' : 'Ver mais' }}
+          <i class="fi mt-1" [class]="isDescriptionExpanded() ? 'fi-rr-angle-small-up' : 'fi-rr-angle-small-down'"></i>
+        </button>
+      </div>
+
+      <!-- Owner Section (New) -->
+      <div class="mb-8 p-4 bg-gray-50 rounded-[24px] border border-gray-100 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors" [routerLink]="['/profile', '1']">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="João Silva" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900">João Silva</h4>
+            <div class="flex items-center gap-1 text-[10px] text-gray-500">
+              <i class="fi fi-rr-star text-yellow-500 mt-0.5"></i>
+              <span class="font-bold">4.8</span>
+              <span>•</span>
+              <span>Anunciante</span>
+            </div>
+          </div>
+        </div>
+        <i class="fi fi-rr-angle-small-right text-gray-400 text-xl"></i>
       </div>
 
       <!-- Amenities -->
