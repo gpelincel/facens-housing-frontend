@@ -1,0 +1,110 @@
+@if (property) {
+  <div class="relative pb-24">
+    <!-- Header with Back Button -->
+    <div class="absolute top-0 left-0 right-0 z-20 flex justify-between items-center px-4 py-8 pointer-events-none">
+      <a routerLink="/" class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
+        <i class="fi fi-rr-angle-left mt-1 mr-0.5"></i>
+      </a>
+      <div class="flex gap-2">
+        <button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
+          <i class="fi fi-rr-heart mt-1"></i>
+        </button>
+        <button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
+          <i class="fi fi-rr-share mt-1"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="h-80 w-full relative bg-gray-200">
+      <img [src]="property.imageUrl" [alt]="property.title" class="w-full h-full object-cover" />
+      <div class="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white text-[10px] px-3 py-1 rounded-full">
+        1/8
+      </div>
+    </div>
+
+    <!-- Details Content -->
+    <div class="px-6 py-6 -mt-6 bg-white rounded-t-[30px] relative z-10">
+      <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ property.title }}</h1>
+        <div class="text-xl font-bold text-primary mb-2">R$ {{ property.price | number:'1.0-0':'pt-BR' }}/mês</div>
+        <div class="flex items-center gap-1 text-gray-500 text-sm mb-1">
+          <i class="fi fi-rr-marker mt-0.5"></i>
+          <span>{{ property.location }}</span>
+        </div>
+        <div class="flex items-center gap-1 text-gray-500 text-sm">
+          <i class="fi fi-rr-road mt-0.5"></i>
+          <span>{{ property.distance | number:'1.1-1':'pt-BR' }} km da Facens</span>
+        </div>
+      </div>
+
+      <!-- Main Features Grid -->
+      <div class="grid grid-cols-4 gap-3 mb-8">
+        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
+          <i class="fi fi-rr-bed text-primary text-xl mb-1"></i>
+          <span class="text-[10px] font-bold">2</span>
+          <span class="text-[9px] text-gray-500">Quartos</span>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
+          <i class="fi fi-rr-toilet text-primary text-xl mb-1"></i>
+          <span class="text-[10px] font-bold">1</span>
+          <span class="text-[9px] text-gray-500">Banheiro</span>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
+          <i class="fi fi-rr-car-alt text-primary text-xl mb-1"></i>
+          <span class="text-[10px] font-bold">1</span>
+          <span class="text-[9px] text-gray-500">Vaga</span>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
+          <i class="fi fi-rr-expand text-primary text-xl mb-1"></i>
+          <span class="text-[10px] font-bold">56 m²</span>
+          <span class="text-[9px] text-gray-500">Área</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-8">
+        <h3 class="text-base font-bold text-gray-900 mb-2">Sobre o imóvel</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Apartamento mobiliado, próximo a mercados, farmácias e com fácil acesso à Facens. Condomínio tranquilo e seguro.
+        </p>
+        <button class="text-primary text-sm font-bold mt-2">Ver mais</button>
+      </div>
+
+      <!-- Amenities -->
+      <div class="mb-8">
+        <h3 class="text-base font-bold text-gray-900 mb-3">Comodidades</h3>
+        <div class="flex flex-wrap gap-2">
+          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
+            <i class="fi fi-rr-wifi mt-1 text-primary"></i>
+            Wi-Fi
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
+            <i class="fi fi-rr-chair mt-1 text-primary"></i>
+            Mobiliado
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
+            <i class="fi fi-rr-room-service mt-1 text-primary"></i>
+            Cozinha
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
+            <i class="fi fi-rr-washing-machine mt-1 text-primary"></i>
+            Lavanderia
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons (Sticky at bottom of screen, but above nav) -->
+    <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-30 flex gap-3 mb-[70px]">
+      <button class="flex-1 flex items-center justify-center gap-2 py-4 px-6 border border-primary text-primary rounded-2xl font-bold text-sm hover:bg-primary/5 transition-colors">
+        <i class="fi fi-rr-phone-call mt-1"></i>
+        Ligar
+      </button>
+      <button class="flex-1 flex items-center justify-center gap-2 py-4 px-6 bg-primary text-white rounded-2xl font-bold text-sm hover:bg-blue-900 transition-shadow shadow-lg shadow-primary/20">
+        <i class="fi fi-rr-comment-alt mt-1"></i>
+        Conversar
+      </button>
+    </div>
+  </div>
+}

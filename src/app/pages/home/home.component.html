@@ -1,0 +1,53 @@
+<div class="px-4 pt-8 pb-4">
+  <!-- Header / App Bar -->
+  <header class="flex justify-between items-center mb-6">
+    <div class="flex items-center gap-2 text-primary">
+      <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+        <i class="fi fi-rr-home text-xl"></i>
+      </div>
+      <h1 class="text-xl font-bold">Facens Housing</h1>
+    </div>
+    <button class="relative p-2 text-gray-700 hover:text-primary transition-colors">
+      <i class="fi fi-rr-bell text-xl mt-1 block"></i>
+      <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full"></span>
+    </button>
+  </header>
+
+  <!-- Greeting -->
+  <div class="mb-5">
+    <h2 class="text-2xl font-bold text-primary mb-1">Olá<span class="text-gray-900">, tudo bem?</span></h2>
+    <p class="text-gray-500 text-sm">Encontre seu apê ou república ideal</p>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="relative mb-5">
+    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+      <i class="fi fi-rr-search mt-1 block"></i>
+    </div>
+    <input 
+      type="text" 
+      class="block w-full pl-11 pr-11 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-shadow shadow-[0_2px_10px_rgba(0,0,0,0.02)]" 
+      placeholder="Buscar por bairro, nome ou condição...">
+    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-gray-400">
+      <i class="fi fi-rr-search-alt mt-1 block"></i>
+    </div>
+  </div>
+
+  <!-- Filters Component -->
+  <div class="mb-6">
+    <app-category-filters></app-category-filters>
+  </div>
+
+  <!-- Featured Section Header -->
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-base font-bold text-gray-900">Imóveis em destaque</h3>
+    <a href="#" class="text-sm font-medium text-primary hover:underline">Ver todos</a>
+  </div>
+
+  <!-- Properties List -->
+  <div class="flex flex-col gap-1 pb-4">
+    @for (property of featuredProperties; track property.id) {
+      <app-property-card [property]="property"></app-property-card>
+    }
+  </div>
+</div>
