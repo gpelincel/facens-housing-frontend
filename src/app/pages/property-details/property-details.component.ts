@@ -2,11 +2,20 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Property } from '../../core/models/property.model';
+import { FeatureItemComponent } from '../../shared/components/feature-item/feature-item.component';
+import { AmenityBadgeComponent } from '../../shared/components/amenity-badge/amenity-badge.component';
+import { OwnerPreviewComponent } from '../../shared/components/owner-preview/owner-preview.component';
 
 @Component({
   selector: 'app-property-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule, 
+    RouterLink, 
+    FeatureItemComponent, 
+    AmenityBadgeComponent, 
+    OwnerPreviewComponent
+  ],
   templateUrl: './property-details.component.html'
 })
 export class PropertyDetailsComponent implements OnInit {

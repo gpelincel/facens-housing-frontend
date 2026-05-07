@@ -82,26 +82,10 @@
 
       <!-- Main Features Grid -->
       <div class="grid grid-cols-4 gap-3 mb-8">
-        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
-          <i class="fi fi-rr-bed text-primary text-xl mb-1"></i>
-          <span class="text-[10px] font-bold">2</span>
-          <span class="text-[9px] text-gray-500">Quartos</span>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
-          <i class="fi fi-rr-toilet text-primary text-xl mb-1"></i>
-          <span class="text-[10px] font-bold">1</span>
-          <span class="text-[9px] text-gray-500">Banheiro</span>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
-          <i class="fi fi-rr-car-alt text-primary text-xl mb-1"></i>
-          <span class="text-[10px] font-bold">1</span>
-          <span class="text-[9px] text-gray-500">Vaga</span>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center border border-gray-100">
-          <i class="fi fi-rr-expand text-primary text-xl mb-1"></i>
-          <span class="text-[10px] font-bold">56 m²</span>
-          <span class="text-[9px] text-gray-500">Área</span>
-        </div>
+        <app-feature-item icon="fi-rr-bed" value="2" label="Quartos"></app-feature-item>
+        <app-feature-item icon="fi-rr-toilet" value="1" label="Banheiro"></app-feature-item>
+        <app-feature-item icon="fi-rr-car-alt" value="1" label="Vaga"></app-feature-item>
+        <app-feature-item icon="fi-rr-expand" value="56 m²" label="Área"></app-feature-item>
       </div>
 
       <!-- Description -->
@@ -119,44 +103,21 @@
       </div>
 
       <!-- Owner Section (New) -->
-      <div class="mb-8 p-4 bg-gray-50 rounded-[24px] border border-gray-100 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors" [routerLink]="['/profile', '1']">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="João Silva" class="w-full h-full object-cover">
-          </div>
-          <div>
-            <h4 class="text-sm font-bold text-gray-900">João Silva</h4>
-            <div class="flex items-center gap-1 text-[10px] text-gray-500">
-              <i class="fi fi-rr-star text-yellow-500 mt-0.5"></i>
-              <span class="font-bold">4.8</span>
-              <span>•</span>
-              <span>Anunciante</span>
-            </div>
-          </div>
-        </div>
-        <i class="fi fi-rr-angle-small-right text-gray-400 text-xl"></i>
-      </div>
+      <app-owner-preview 
+        ownerId="1" 
+        name="João Silva" 
+        imageUrl="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+        [rating]="4.8">
+      </app-owner-preview>
 
       <!-- Amenities -->
       <div class="mb-8">
         <h3 class="text-base font-bold text-gray-900 mb-3">Comodidades</h3>
         <div class="flex flex-wrap gap-2">
-          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
-            <i class="fi fi-rr-wifi mt-1 text-primary"></i>
-            Wi-Fi
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
-            <i class="fi fi-rr-chair mt-1 text-primary"></i>
-            Mobiliado
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
-            <i class="fi fi-rr-room-service mt-1 text-primary"></i>
-            Cozinha
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-xs font-medium text-gray-700">
-            <i class="fi fi-rr-washing-machine mt-1 text-primary"></i>
-            Lavanderia
-          </div>
+          <app-amenity-badge icon="fi-rr-wifi" label="Wi-Fi"></app-amenity-badge>
+          <app-amenity-badge icon="fi-rr-chair" label="Mobiliado"></app-amenity-badge>
+          <app-amenity-badge icon="fi-rr-room-service" label="Cozinha"></app-amenity-badge>
+          <app-amenity-badge icon="fi-rr-washing-machine" label="Lavanderia"></app-amenity-badge>
         </div>
       </div>
     </div>
