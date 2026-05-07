@@ -1,0 +1,132 @@
+<div class="min-h-full flex flex-col px-6 pt-10 pb-10">
+  <!-- Back Button -->
+  <div class="mb-6">
+    <a routerLink="/login" class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors">
+      <i class="fi fi-rr-angle-left mt-1 mr-0.5"></i>
+    </a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-gray-900 mb-1">Crie sua conta</h1>
+    <p class="text-gray-500 text-sm">Preencha os dados abaixo para começar</p>
+  </div>
+
+  <!-- Registration Form -->
+  <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)" class="flex flex-col gap-4 mb-8">
+    
+    <!-- Full Name Field -->
+    <div class="flex flex-col gap-1.5">
+      <label for="name" class="text-xs font-bold text-gray-700 ml-1">Nome Completo</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+          <i class="fi fi-rr-user mt-1"></i>
+        </div>
+        <input 
+          type="text" 
+          id="name"
+          name="name"
+          [(ngModel)]="name"
+          required
+          minlength="3"
+          #nameInput="ngModel"
+          [class.border-red-500]="nameInput.invalid && nameInput.touched"
+          class="block w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-100 rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" 
+          placeholder="Seu nome completo">
+      </div>
+      @if (nameInput.invalid && nameInput.touched) {
+        <span class="text-[10px] text-red-500 ml-2 font-medium">Nome é obrigatório (mín. 3 caracteres)</span>
+      }
+    </div>
+
+    <!-- Email Field -->
+    <div class="flex flex-col gap-1.5">
+      <label for="email" class="text-xs font-bold text-gray-700 ml-1">E-mail</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+          <i class="fi fi-rr-envelope mt-1"></i>
+        </div>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          email
+          #emailInput="ngModel"
+          [class.border-red-500]="emailInput.invalid && emailInput.touched"
+          class="block w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-100 rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" 
+          placeholder="seu@email.com">
+      </div>
+      @if (emailInput.invalid && emailInput.touched) {
+        <span class="text-[10px] text-red-500 ml-2 font-medium">E-mail inválido</span>
+      }
+    </div>
+
+    <!-- Password Field -->
+    <div class="flex flex-col gap-1.5">
+      <label for="password" class="text-xs font-bold text-gray-700 ml-1">Senha</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+          <i class="fi fi-rr-lock mt-1"></i>
+        </div>
+        <input 
+          [type]="showPassword() ? 'text' : 'password'" 
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="6"
+          #passwordInput="ngModel"
+          [class.border-red-500]="passwordInput.invalid && passwordInput.touched"
+          class="block w-full pl-11 pr-12 py-3.5 bg-gray-50 border border-gray-100 rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" 
+          placeholder="Mínimo 6 caracteres">
+        <button 
+          type="button"
+          (click)="togglePassword()"
+          class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors">
+          <i class="fi mt-1" [class]="showPassword() ? 'fi-rr-eye-crossed' : 'fi-rr-eye'"></i>
+        </button>
+      </div>
+      @if (passwordInput.invalid && passwordInput.touched) {
+        <span class="text-[10px] text-red-500 ml-2 font-medium">Senha deve ter no mínimo 6 caracteres</span>
+      }
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="flex flex-col gap-1.5 mt-2">
+      <label class="flex items-center gap-3 cursor-pointer select-none group">
+        <div class="relative w-5 h-5 flex-shrink-0">
+          <input 
+            type="checkbox" 
+            name="agreeTerms" 
+            [(ngModel)]="agreeTerms" 
+            required 
+            #termsInput="ngModel"
+            class="peer sr-only">
+          <div class="w-full h-full border-2 border-gray-200 rounded-md bg-white transition-all peer-checked:bg-primary peer-checked:border-primary group-hover:border-primary/50"></div>
+          <i class="fi fi-rr-check absolute inset-0 text-white text-[10px] flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity mt-0.5"></i>
+        </div>
+        <span class="text-xs text-gray-600">Eu concordo com os <a href="#" class="text-primary font-bold hover:underline">Termos de Uso</a> e <a href="#" class="text-primary font-bold hover:underline">Política de Privacidade</a></span>
+      </label>
+      @if (termsInput.invalid && registerForm.submitted) {
+        <span class="text-[10px] text-red-500 ml-8 font-medium italic">Você precisa aceitar os termos</span>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+      type="submit"
+      class="w-full py-4 bg-primary text-white rounded-[20px] font-bold text-base shadow-lg shadow-primary/20 hover:bg-blue-900 transition-all active:scale-[0.98] mt-4">
+      Criar conta
+    </button>
+  </form>
+
+  <!-- Login Link -->
+  <div class="mt-auto text-center">
+    <p class="text-sm text-gray-500">
+      Já tem uma conta? 
+      <a routerLink="/login" class="text-primary font-bold hover:underline ml-1">Faça login</a>
+    </p>
+  </div>
+</div>
