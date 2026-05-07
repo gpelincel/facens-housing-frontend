@@ -4,31 +4,32 @@
     <router-outlet></router-outlet>
   </main>
 
-  <!-- Bottom Navigation - Using relative/flex for better content flow -->
-  <nav class="flex-none bg-white border-t border-gray-100 h-[70px] flex items-center justify-around px-2 pb-safe shadow-[0_-2px_10px_rgba(0,0,0,0.03)]">
-    <a routerLink="/" routerLinkActive="text-primary" [routerLinkActiveOptions]="{exact: true}" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
-      <i class="fi fi-rr-home text-xl"></i>
-      <span class="text-[10px] font-semibold">Início</span>
-    </a>
-    
-    <a routerLink="/saved" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
-      <i class="fi fi-rr-heart text-xl"></i>
-      <span class="text-[10px] font-semibold">Salvar</span>
-    </a>
-    
-    <a routerLink="/advertise" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
-      <i class="fi fi-rr-add text-xl"></i>
-      <span class="text-[10px] font-semibold">Anunciar</span>
-    </a>
-    
-    <a routerLink="/chat" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
-      <i class="fi fi-rr-comment-alt text-xl"></i>
-      <span class="text-[10px] font-semibold">Conversas</span>
-    </a>
-    
-    <a routerLink="/profile" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
-      <i class="fi fi-rr-user text-xl"></i>
-      <span class="text-[10px] font-semibold">Perfil</span>
-    </a>
-  </nav>
+  <!-- Bottom Navigation -->
+  @if (isNotLoginPage()) {
+    <nav class="flex-none bg-white border-t border-gray-100 h-[70px] flex items-center justify-around px-2 pb-safe shadow-[0_-2px_10px_rgba(0,0,0,0.03)]">
+      <a routerLink="/" routerLinkActive="text-primary" [routerLinkActiveOptions]="{exact: true}" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
+        <i class="fi fi-rr-home text-xl"></i>
+        <span class="text-[10px] font-semibold">Início</span>
+      </a>
+      
+      <a routerLink="/login" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
+        <i class="fi fi-rr-heart text-xl"></i>
+        <span class="text-[10px] font-semibold">Salvar</span>
+      </a>
+
+      <a routerLink="/login" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
+        <i class="fi fi-rr-add text-xl"></i>
+        <span class="text-[10px] font-semibold">Anunciar</span>
+      </a>
+
+      <a routerLink="/login" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
+        <i class="fi fi-rr-comment-alt text-xl"></i>
+        <span class="text-[10px] font-semibold">Conversas</span>
+      </a>      
+      <a routerLink="/profile" routerLinkActive="text-primary" class="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors w-16 gap-1">
+        <i class="fi fi-rr-user text-xl"></i>
+        <span class="text-[10px] font-semibold">Perfil</span>
+      </a>
+    </nav>
+  }
 </div>

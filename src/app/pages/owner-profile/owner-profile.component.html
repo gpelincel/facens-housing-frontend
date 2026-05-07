@@ -9,9 +9,9 @@
       <a routerLink="/" class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 hover:bg-white/30 transition-colors">
         <i class="fi fi-rr-angle-left mt-1 mr-0.5"></i>
       </a>
-      <button class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30">
-        <i class="fi fi-rr-menu-dots mt-1"></i>
-      </button>
+      <a routerLink="/login" class="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-bold border border-white/30 hover:bg-white/30 transition-colors">
+        Entrar
+      </a>
     </div>
   </div>
 
@@ -44,10 +44,10 @@
 
     <!-- Buttons -->
     <div class="flex flex-col gap-3 mb-8">
-      <button class="w-full py-4 px-6 bg-primary text-white rounded-2xl font-bold text-sm shadow-lg shadow-primary/20 hover:bg-blue-900 transition-all active:scale-[0.98]">
+      <button (click)="navigateToLogin()" class="w-full py-4 px-6 bg-primary text-white rounded-2xl font-bold text-sm shadow-lg shadow-primary/20 hover:bg-blue-900 transition-all active:scale-[0.98]">
         Enviar mensagem
       </button>
-      <button class="w-full py-4 px-6 bg-white border border-primary text-primary rounded-2xl font-bold text-sm hover:bg-primary/5 transition-all active:scale-[0.98]">
+      <button (click)="navigateToLogin()" class="w-full py-4 px-6 bg-white border border-primary text-primary rounded-2xl font-bold text-sm hover:bg-primary/5 transition-all active:scale-[0.98]">
         Ver anúncios deste anunciante
       </button>
     </div>

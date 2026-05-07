@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { StatRowComponent } from '../../shared/components/stat-row/stat-row.component';
 
 @Component({
@@ -23,7 +23,11 @@ export class OwnerProfileComponent implements OnInit {
     imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
   };
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

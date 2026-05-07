@@ -9,7 +9,7 @@
     </div>
 
     <!-- Favorite Button -->
-    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-800 hover:text-red-500 hover:bg-white transition-all shadow-md">
+    <button (click)="$event.stopPropagation(); navigateToLogin()" class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-800 hover:text-red-500 hover:bg-white transition-all shadow-md">
       <i class="fi fi-rr-heart mt-1 text-lg"></i>
     </button>
   </div>

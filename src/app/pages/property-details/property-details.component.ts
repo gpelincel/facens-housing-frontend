@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { Property } from '../../core/models/property.model';
 import { FeatureItemComponent } from '../../shared/components/feature-item/feature-item.component';
 import { AmenityBadgeComponent } from '../../shared/components/amenity-badge/amenity-badge.component';
@@ -36,7 +36,7 @@ export class PropertyDetailsComponent implements OnInit {
     'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
   ];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -113,6 +113,10 @@ export class PropertyDetailsComponent implements OnInit {
 
   private getClientX(event: MouseEvent | TouchEvent): number {
     return event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
   }
 
   async shareProperty() {

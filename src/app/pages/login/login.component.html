@@ -1,0 +1,94 @@
+<div class="min-h-full flex flex-col px-6 pt-12 pb-10">
+  <!-- Brand / Logo Area -->
+  <div class="flex flex-col items-center mb-12">
+    <div class="w-20 h-20 rounded-[24px] bg-primary/10 flex items-center justify-center text-primary mb-4 shadow-sm">
+      <i class="fi fi-rr-home text-4xl mt-1"></i>
+    </div>
+    <h1 class="text-2xl font-bold text-primary">Facens Housing</h1>
+    <p class="text-gray-500 text-sm">Sua moradia universitária começa aqui</p>
+  </div>
+
+  <!-- Welcome Text -->
+  <div class="mb-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-1">Bem-vindo de volta!</h2>
+    <p class="text-gray-500 text-sm">Acesse sua conta para continuar</p>
+  </div>
+
+  <!-- Login Form -->
+  <form (ngSubmit)="onLogin()" class="flex flex-col gap-5 mb-8">
+    <!-- Email Field -->
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-xs font-bold text-gray-700 ml-1">E-mail</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+          <i class="fi fi-rr-envelope mt-1"></i>
+        </div>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          class="block w-full pl-11 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" 
+          placeholder="seu@email.com">
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="flex flex-col gap-2">
+      <label for="password" class="text-xs font-bold text-gray-700 ml-1">Senha</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+          <i class="fi fi-rr-lock mt-1"></i>
+        </div>
+        <input 
+          [type]="showPassword() ? 'text' : 'password'" 
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          class="block w-full pl-11 pr-12 py-4 bg-gray-50 border border-gray-100 rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" 
+          placeholder="Sua senha secreta">
+        <button 
+          type="button"
+          (click)="togglePassword()"
+          class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors">
+          <i class="fi mt-1" [class]="showPassword() ? 'fi-rr-eye-crossed' : 'fi-rr-eye'"></i>
+        </button>
+      </div>
+      <a href="#" class="text-xs font-bold text-primary text-right mt-1 hover:underline">Esqueceu a senha?</a>
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+      type="submit"
+      class="w-full py-4 bg-primary text-white rounded-[20px] font-bold text-base shadow-lg shadow-primary/20 hover:bg-blue-900 transition-all active:scale-[0.98] mt-2">
+      Entrar
+    </button>
+  </form>
+
+  <!-- Divider -->
+  <div class="flex items-center gap-4 mb-8">
+    <div class="flex-1 h-[1px] bg-gray-100"></div>
+    <span class="text-xs text-gray-400 font-medium uppercase">ou entre com</span>
+    <div class="flex-1 h-[1px] bg-gray-100"></div>
+  </div>
+
+  <!-- Social Logins -->
+  <div class="grid grid-cols-2 gap-4 mb-10">
+    <button class="flex items-center justify-center gap-2 py-3.5 border border-gray-100 rounded-[20px] hover:bg-gray-50 transition-colors">
+      <img src="https://www.google.com/favicon.ico" class="w-4 h-4 grayscale opacity-70" alt="Google">
+      <span class="text-sm font-bold text-gray-700">Google</span>
+    </button>
+    <button class="flex items-center justify-center gap-2 py-3.5 border border-gray-100 rounded-[20px] hover:bg-gray-50 transition-colors">
+      <i class="fi fi-rr-facebook text-blue-600 text-lg mt-1"></i>
+      <span class="text-sm font-bold text-gray-700">Facebook</span>
+    </button>
+  </div>
+
+  <!-- Register Link -->
+  <div class="mt-auto text-center">
+    <p class="text-sm text-gray-500">
+      Não tem uma conta? 
+      <a href="#" class="text-primary font-bold hover:underline ml-1">Cadastre-se</a>
+    </p>
+  </div>
+</div>

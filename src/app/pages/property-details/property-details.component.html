@@ -6,7 +6,7 @@
         <i class="fi fi-rr-angle-left mt-1 mr-0.5"></i>
       </a>
       <div class="flex gap-2">
-        <button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
+        <button (click)="navigateToLogin()" class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm">
           <i class="fi fi-rr-heart mt-1"></i>
         </button>
         <button (click)="shareProperty()" class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 pointer-events-auto shadow-sm hover:bg-white transition-colors active:scale-90">
@@ -124,11 +124,11 @@
 
     <!-- Action Buttons (Sticky at bottom of screen, but above nav) -->
     <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 z-30 flex gap-3 mb-[70px]">
-      <button class="flex-1 flex items-center justify-center gap-2 py-4 px-6 border border-primary text-primary rounded-2xl font-bold text-sm hover:bg-primary/5 transition-colors">
+      <button (click)="navigateToLogin()" class="flex-1 flex items-center justify-center gap-2 py-4 px-6 border border-primary text-primary rounded-2xl font-bold text-sm hover:bg-primary/5 transition-colors">
         <i class="fi fi-rr-phone-call mt-1"></i>
         Ligar
       </button>
-      <button class="flex-1 flex items-center justify-center gap-2 py-4 px-6 bg-primary text-white rounded-2xl font-bold text-sm hover:bg-blue-900 transition-shadow shadow-lg shadow-primary/20">
+      <button (click)="navigateToLogin()" class="flex-1 flex items-center justify-center gap-2 py-4 px-6 bg-primary text-white rounded-2xl font-bold text-sm hover:bg-blue-900 transition-shadow shadow-lg shadow-primary/20">
         <i class="fi fi-rr-comment-alt mt-1"></i>
         Conversar
       </button>
