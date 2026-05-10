@@ -32,4 +32,36 @@
       </a>
     </nav>
   }
+
+  <!-- PWA Install Prompt -->
+  @if (showInstallPrompt()) {
+    <div class="absolute bottom-24 left-4 right-4 z-50 transition-all duration-300 transform translate-y-0 opacity-100">
+      <div class="bg-white rounded-[24px] p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-100 flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <img src="favicon.png" alt="Facens Housing" class="w-12 h-12 object-contain rounded-xl shrink-0">
+          <div class="flex-1 min-w-0">
+            <h3 class="font-bold text-sm text-gray-900 leading-tight">Facens Housing</h3>
+            <p class="text-[10px] text-gray-500">Instale para acesso rápido e notificações.</p>
+          </div>
+          <button (click)="dismissInstallPrompt()" class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+            <i class="fi fi-rr-cross-small text-lg"></i>
+          </button>
+        </div>
+
+        @if (isIOS()) {
+          <div class="bg-gray-50 rounded-xl p-3 flex items-center gap-3 border border-gray-100">
+            <div class="flex flex-col gap-1">
+              <p class="text-[10px] text-gray-600 leading-tight">
+                Toque em <i class="fi fi-rr-share text-xs text-primary inline-block mx-0.5"></i> e depois em <strong>"Adicionar à Tela de Início"</strong> para instalar.
+              </p>
+            </div>
+          </div>
+        } @else {
+          <button (click)="installApp()" class="w-full bg-primary text-white py-2.5 rounded-full text-xs font-bold hover:bg-blue-900 transition-colors shadow-md shadow-primary/10">
+            Instalar Web App
+          </button>
+        }
+      </div>
+    </div>
+  }
 </div>
