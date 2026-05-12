@@ -8,6 +8,19 @@
   "start_url": "./",
   "description": "Sua moradia universitária próxima à Facens",
   "orientation": "portrait",
+  "categories": ["lifestyle", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Ver Imóveis",
+      "url": "/",
+      "icons": [{ "src": "favicon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Anunciar",
+      "url": "/login",
+      "icons": [{ "src": "favicon.png", "sizes": "192x192" }]
+    }
+  ],
   "icons": [
     {
       "src": "favicon.png",
