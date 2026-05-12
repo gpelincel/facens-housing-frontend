@@ -128,10 +128,10 @@
         <i class="fi fi-rr-phone-call mt-1"></i>
         Ligar
       </button>
-      <button (click)="navigateToLogin()" class="flex-1 flex items-center justify-center gap-2 py-4 px-6 bg-primary text-white rounded-2xl font-bold text-sm hover:bg-blue-900 transition-shadow shadow-lg shadow-primary/20">
-        <i class="fi fi-rr-comment-alt mt-1"></i>
-        Conversar
-      </button>
+      <a [href]="getWhatsAppLink()" target="_blank" class="flex-1 flex items-center justify-center gap-2 py-4 px-6 bg-[#25D366] text-white rounded-2xl font-bold text-sm hover:bg-[#128C7E] transition-shadow shadow-lg shadow-green-500/20">
+        <i class="fi fi-rr-brand-whatsapp mt-1 text-lg"></i>
+        WhatsApp
+      </a>
     </div>
   </div>
 }

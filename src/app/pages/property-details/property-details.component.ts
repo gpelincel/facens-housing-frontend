@@ -44,11 +44,21 @@ export class PropertyDetailsComponent implements OnInit {
     this.property = {
       id: id || '1',
       title: 'Apartamento 2 quartos',
+      description: 'Lindo apartamento mobiliado em Sorocaba, ideal para estudantes que buscam conforto e praticidade.',
       price: 1100,
       location: 'Wanel Ville, Sorocaba - SP',
       distance: 2.1,
-      imageUrl: this.images[0]
+      image_url: this.images[0],
+      amenities: ['Mobiliado', 'Wi-Fi', 'Garagem'],
+      owner_id: 'mock',
+      owner_phone: '5515998765432'
     };
+  }
+
+  getWhatsAppLink(): string {
+    if (!this.property?.owner_phone) return '#';
+    const message = `Olá! Vi seu anúncio "${this.property.title}" no Facens Housing e gostaria de mais informações.`;
+    return `https://wa.me/${this.property.owner_phone}?text=${encodeURIComponent(message)}`;
   }
 
   // Carousel Actions

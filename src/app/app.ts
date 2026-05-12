@@ -71,6 +71,7 @@ export class App implements OnInit {
   }
 
   isNotLoginPage(): boolean {
-    return this.router.url !== '/login' && this.router.url !== '/register';
+    const hiddenRoutes = ['/login', '/register', '/add-property'];
+    return !hiddenRoutes.includes(this.router.url);
   }
 }
